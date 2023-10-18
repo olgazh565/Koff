@@ -75,7 +75,6 @@ export class ApiService {
 							Authorization: `Bearer ${this.accessKey}`,
 						},
 					});
-			console.log('response.data: ', response.data);
 
 			return response.data;
 		} catch (error) {
@@ -92,7 +91,6 @@ export class ApiService {
 		if (!this.accessKey) {
 			await this.getAccessKey();
 		}
-		console.log('В корзину');
 		try {
 			const response = await axios.put(
 					`${this.#apiUrl}api/cart/products`,
@@ -123,7 +121,6 @@ export class ApiService {
 		if (!this.accessKey) {
 			await this.getAccessKey();
 		}
-		console.log('В корзину');
 		try {
 			const response = await axios.delete(
 					`${this.#apiUrl}api/cart/products/${id}`,
@@ -156,7 +153,6 @@ export class ApiService {
 							Authorization: `Bearer ${this.accessKey}`,
 						},
 					});
-			console.log('response.data: ', response.data);
 
 			return response.data;
 		} catch (error) {

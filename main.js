@@ -22,7 +22,9 @@ const init = async () => {
 
 	if (!api.accessKey) await api.getAccessKey();
 
-	const {totalCount: basketCount} = await api.getCart();
+	const {products} = await api.getCart();
+	const basketCount = products.reduce(
+			(acc, item) => acc + item.quantity, 0);
 
 	new Header().mount();
 	new Header().changeCount(basketCount);
@@ -82,19 +84,16 @@ const init = async () => {
 			)
 			.on('/favorite',
 					async ({params}) => {
-						console.log('params: ', params);
 						new Catalog().mount(new Main().element);
 						new BreadCrumbs().mount(new Main().element, [{text: 'Избранное'}]);
 
 						const favorite = new FavoriteService().get().join(',');
-						console.log('favorite: ', favorite);
 
 						const {data: products, pagination} = await api.getProducts({
 							list: favorite,
 							page: params?.page || 1,
 						});
 
-						console.log('products: ', products);
 						new ProductList()
 								.mount(
 										new Main().element,
@@ -161,7 +160,6 @@ const init = async () => {
 			)
 			.on('/product/:id',
 					async (obj) => {
-						console.log(obj);
 						new Catalog().mount(new Main().element);
 						const data = await api.getProductById(obj.data.id);
 
@@ -214,8 +212,8 @@ const init = async () => {
 			.on('/order/:id',
 					async ({data: {id}}) => {
 						const data = await api.getOrder(id);
-						console.log('data: ', data);
 						new Order().mount(new Main().element, data[0]);
+
 						new Header().changeCount(basketCount);
 					},
 					{

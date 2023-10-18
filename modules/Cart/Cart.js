@@ -3,6 +3,7 @@ import {debounce} from '../../helpers';
 import {router} from '../../main';
 import {ApiService} from '../../services/ApiService';
 import {addContainer} from '../addContainer';
+import {Header} from '../header/Header';
 
 export class Cart {
 	static instance = null;
@@ -48,8 +49,6 @@ export class Cart {
 	}
 
 	updateCart(id, quantity) {
-		console.log(id, quantity);
-
 		if (quantity === 0) {
 			new ApiService().deleteProductFromCart(id);
 
@@ -69,6 +68,11 @@ export class Cart {
 				(acc, item) => acc + item.price * item.quantity
 				, 0,
 		);
+
+		this.cartData.totalCount = this.cartData.products.reduce(
+				(acc, item) => acc + item.quantity, 0);
+
+		new Header().changeCount(this.cartData.totalCount);
 
 		this.orderCount.textContent =
 			`${this.cartData.totalCount} товара на сумму:`;
@@ -122,6 +126,7 @@ export class Cart {
 			buttonMinus.addEventListener('click', async () => {
 				if (item.quantity) {
 					item.quantity--;
+					// this.cartData.totalCount--;
 					productCount.textContent = item.quantity;
 
 					if (item.quantity === 0) {
@@ -141,6 +146,7 @@ export class Cart {
 			buttonPlus.addEventListener('click', async () => {
 				if (item.quantity) {
 					item.quantity++;
+					// this.cartData.totalCount++;
 					productCount.textContent = item.quantity;
 					price.textContent =
 						`${(item.price * item.quantity).toLocaleString()} ₽`;
@@ -161,7 +167,8 @@ export class Cart {
 	}
 
 	renederPlace() {
-		const count = this.cartData.totalCount;
+		const count = this.cartData.products.reduce(
+				(acc, item) => acc + item.quantity, 0);
 		const totalPrice = this.cartData.totalPrice;
 
 		const orderPlace = document.createElement('div');
