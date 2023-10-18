@@ -14,10 +14,14 @@ export class CardButton {
 		button.textContent = this.text;
 
 		button.addEventListener('click', async () => {
-			const {totalCount} = await new ApiService().postProductToCart(id);
-			new Header().changeCount(totalCount);
+			const {products} = await new ApiService().getCart();
+			if (products.find(item => item.id === id)) return;
+			await new ApiService().postProductToCart(id);
 
-			console.log('В корзину');
+			const basketCount = products.reduce(
+					(acc, item) => acc + item.quantity, 0);
+
+			new Header().changeCount(basketCount);
 		});
 
 		return button;
