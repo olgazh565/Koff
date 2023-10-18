@@ -7,7 +7,7 @@ import {Footer} from './modules/footer/Footer';
 import {ProductList} from './modules/ProductList/ProductList';
 import {ApiService} from './services/ApiService';
 import {Catalog} from './modules/Catalog/Catalog';
-import {FavoriteService} from './services/storageService';
+import {FavoriteService} from './services/StorageService';
 import {Pagination} from './modules/Pagination/Pagination';
 import {BreadCrumbs} from './modules/BreadCrumbs/BreadCrumbs';
 import {ProductPage} from './modules/ProductPage/ProductPage';

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {API_URL} from '../const';
-import {AccessKeyService} from './storageService';
+import {AccessKeyService} from './StorageService';
 
 export class ApiService {
 	#apiUrl = API_URL;

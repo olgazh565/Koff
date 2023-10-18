@@ -1,4 +1,4 @@
-import {FavoriteService} from '../../services/storageService';
+import {FavoriteService} from '../../services/StorageService';
 import {likeSvg} from '../likeSvg/likeSvg';
 
 export class LikeButton {
