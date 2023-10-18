@@ -60,9 +60,10 @@ const init = async () => {
 						});
 						new ProductList().mount(new Main().element, products, slug);
 
-						pagination.totalProducts > pagination.limit ? new Pagination()
-								.mount(new ProductList().containerElement)
-								.update(pagination) : '';
+						pagination?.totalProducts > pagination?.limit ?
+							new Pagination()
+									.mount(new ProductList().containerElement)
+									.update(pagination) : '';
 						router.updatePageLinks();
 					},
 					{
@@ -101,7 +102,7 @@ const init = async () => {
 										products?.length ? 'Избранное' :
 											'В избранном пока нет товаров',
 								);
-						pagination.totalProducts > pagination.limit ?
+						pagination?.totalProducts > pagination?.limit ?
 							new Pagination()
 									.mount(new ProductList().containerElement)
 									.update(pagination) : '';
