@@ -11,7 +11,7 @@ import {FavoriteService} from './services/StorageService';
 import {Pagination} from './modules/Pagination/Pagination';
 import {BreadCrumbs} from './modules/BreadCrumbs/BreadCrumbs';
 import {ProductPage} from './modules/ProductPage/ProductPage';
-import {productSlider} from './features/ProductSlider/ProductSlider';
+import {productSlider} from './features/ProductSlider/productSlider';
 import {Cart} from './modules/Cart/Cart';
 import {Order} from './modules/Order/Order';
 
