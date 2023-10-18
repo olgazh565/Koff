@@ -8,7 +8,6 @@ export class CardButton {
 	}
 
 	create(id) {
-		console.log('id: ', id);
 		const button = document.createElement('button');
 		button.classList.add(this.className);
 		button.dataset.id = id;
@@ -16,14 +15,28 @@ export class CardButton {
 
 		button.addEventListener('click', async () => {
 			const {products} = await new ApiService().getCart();
-			const isInCart = products.findIndex(item => item.productId === id);
-			if (isInCart !== -1) return;
-			await new ApiService().postProductToCart(id);
 
-			const basketCount = products.reduce(
-					(acc, item) => acc + item.quantity, 0);
+			const index = products.findIndex(item => item.productId === id);
 
-			new Header().changeCount(basketCount);
+			if (index === -1) {
+				await new ApiService().postProductToCart(id);
+				const {products: products2} = await new ApiService().getCart();
+
+				const basketCount2 = products2?.reduce(
+						(acc, item) => acc + item.quantity, 0);
+
+				new Header().changeCount(basketCount2);
+			} else {
+				let quantity = products[index].quantity;
+				quantity++;
+				await new ApiService().changeQuantityProductToCart(id, quantity);
+				const {products: products3} = await new ApiService().getCart();
+
+				const basketCount3 = products3?.reduce(
+						(acc, item) => acc + item.quantity, 0);
+
+				new Header().changeCount(basketCount3);
+			}
 		});
 
 		return button;

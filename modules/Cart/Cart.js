@@ -25,18 +25,18 @@ export class Cart {
 	async mount(parent, data, title) {
 		if (this.isMounted) return;
 		this.containerElement.innerHTML = '';
-		const titleElem = document.createElement('h2');
-		titleElem.classList.add('cart__title');
-		titleElem.textContent = title;
+		this.titleElem = document.createElement('h2');
+		this.titleElem.classList.add('cart__title');
+		this.titleElem.textContent = title;
 
-		this.containerElement.append(titleElem);
+		this.containerElement.append(this.titleElem);
 
 		this.cartData = data;
 
 		if (data.products && data.products.length) {
 			this.renederProducts();
-			this.renederPlace();
-			this.renderForm();
+			this.order = this.renederPlace();
+			this.form = this.renderForm();
 		}
 
 		parent.append(this.element);
@@ -53,12 +53,17 @@ export class Cart {
 			new ApiService().deleteProductFromCart(id);
 
 			this.cartData.products =
-				this.cartData.products.filter(item => item.id !== id);
+				this.cartData.products.filter(item => item.productId !== id);
+
+			if (this.cartData.totalCount === 0) {
+				this.containerElement.innerHTML = '';
+				this.titleElem.textContent = 'Корзина пуста';
+			}
 		} else {
 			new ApiService().changeQuantityProductToCart(id, quantity);
 
 			this.cartData.products.forEach(item => {
-				if (item.id === id) {
+				if (item.productId === id) {
 					item.quantity = quantity;
 				}
 			});
@@ -124,16 +129,23 @@ export class Cart {
 			productCount.textContent = item.quantity;
 
 			buttonMinus.addEventListener('click', async () => {
+				console.log('this.cartData: ', this.cartData);
+
 				if (item.quantity) {
 					item.quantity--;
-					// this.cartData.totalCount--;
 					productCount.textContent = item.quantity;
 
 					if (item.quantity === 0) {
 						listItem.remove();
 
 						this.debUpdateCart(item.id, item.quantity);
+						console.log(this.cartData.totalCount);
 
+						if (this.cartData.totalCount === 1) {
+							this.order.innerHTML = '';
+							this.form.innerHTML = '';
+							this.titleElem.textContent = 'Корзина пуста';
+						}
 						return;
 					}
 					price.textContent =
@@ -146,7 +158,6 @@ export class Cart {
 			buttonPlus.addEventListener('click', async () => {
 				if (item.quantity) {
 					item.quantity++;
-					// this.cartData.totalCount++;
 					productCount.textContent = item.quantity;
 					price.textContent =
 						`${(item.price * item.quantity).toLocaleString()} ₽`;
@@ -204,6 +215,7 @@ export class Cart {
 		orderPlace.append(cartSubtitle, orderPlaceInfo, delivery, orderButton);
 
 		this.containerElement.append(orderPlace);
+		return orderPlace;
 	}
 
 	renderForm() {
@@ -272,5 +284,6 @@ export class Cart {
 		});
 
 		this.containerElement.append(form);
+		return form;
 	}
 }
