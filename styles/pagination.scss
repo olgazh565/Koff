@@ -1,0 +1,36 @@
+.pagination {
+    width: 200px;
+    margin: 0 auto;
+
+    &__bar {
+        background-color: $background-secondary;
+        height: 6px;
+        width: 100%;
+        border-radius: 3px;
+        margin-bottom: 16px;
+
+        &::after {
+            content: '';
+            display: block;
+            background-color: $violett-color;
+            height: 100%;
+            width: var(--width);
+            border-radius: 3px;
+            transition: width 0.3s ease-in-out;
+        }
+    }
+
+    &__arrows {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 96px;
+        margin: 0 auto;
+    }
+
+    &__number {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+}

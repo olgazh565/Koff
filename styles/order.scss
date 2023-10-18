@@ -1,0 +1,115 @@
+.order {
+    padding-top: 32px;
+
+    @include md {
+        padding-top: 60px;
+    }
+
+    &__container {        
+        display: flex;
+        justify-content: center;
+        padding: 24px 16px;
+        border-radius: 16px;
+        border: 1px solid $background-secondary;
+
+        @include lg {
+            max-width: 726px;
+        }
+        @include xl {
+            max-width: 832px;
+        }
+    }
+
+    &__wrapper {
+        width: 100%;
+
+        @include md {
+            max-width: 408px;
+        }
+    }
+
+    &__header {
+        font-size: 16px;
+        margin-bottom: 8px;
+
+        @include md {
+            font-size: 20px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+    &__title {
+        font-size: 16px;
+        margin-bottom: 8px;
+
+        @include md {
+            font-size: 20px;
+            margin-bottom: 0;
+        }
+    }
+
+    &__order-number {
+        display: inline-block;
+        border-radius: 32px;
+        background-color: $background-secondary;
+        padding: 4px 8px;
+        margin-bottom: 20px;
+
+        @include md {
+            margin-bottom: 24px;
+        }
+    }
+
+    &__subtitle {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+
+    &__list {
+        margin-bottom: 24px;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 8px;
+        border-bottom: 1px solid $background-secondary;
+        margin-bottom: 8px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__name {
+        color: $secondary-color;
+    }
+
+    &__link {
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 12px 24px;
+        border-radius: 32px;
+        border: 1px solid transparent;
+        background-color: $violett-color;
+        color: $background-main;
+        transition: background-color, border-color 0.2s ease-in-out;
+        outline: 0;
+
+        &:hover {
+            background-color: #9200B7;
+        }
+        &:focus-visible {
+            border-color: #C0F;
+        }
+        &.inactive {
+            border: 1px solid $violett-color;
+            opacity: 0.2;
+            background: $violett-color;
+        }
+    }
+}

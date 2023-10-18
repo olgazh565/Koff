@@ -1,0 +1,66 @@
+.catalog {
+    overflow-x: hidden;
+    padding-top: 24px;
+
+    @include md {
+        padding-top: 32px;
+    }
+    @include lg {
+        padding-top: 40px;
+    }
+
+
+    &__container {
+        padding: 0;
+    }
+
+    &__list {
+        overflow-x: auto;
+        padding: 0 16px;
+        display: flex;
+        gap: 4px;
+
+        @include md {
+            padding: 0 29px;
+        }
+        @include lg {
+            padding: 0 43px;
+        }
+        @include xl {
+            padding: 0 92px;
+        }
+    }
+
+    &__link {
+        display: block;
+        border-radius: 32px;
+        background-color: $background-secondary;
+        padding: 8px 14px 10px 14px;
+        color: $secondary-color;
+        outline: none;
+        border: 1px solid transparent;
+        transition: all 0.2s ease-in-out;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus-visible {
+            border-color: $violett-color;
+            color: $violett-color;
+        }
+
+        &:active,
+        &_active {
+            background-color: $violett-color;
+            color: $background-main;
+
+            &:hover,
+            &:focus-visible {
+                color: $background-main;
+            }
+        }
+
+        &_active {
+            pointer-events: none;
+        }
+    }
+}

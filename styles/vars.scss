@@ -1,0 +1,22 @@
+$main-color: #1C1C1C;
+$secondary-color: #969EAE;
+$violett-color: #780096;
+
+$background-main: #fff;
+$background-secondary: #EEEFF2;
+
+@mixin md {
+    @media (min-width: 580px) {
+        @content;
+    }
+}
+@mixin lg {
+    @media (min-width: 820px) {
+        @content;
+    }
+}
+@mixin xl {
+    @media (min-width: 1120px) {
+        @content;
+    }
+}

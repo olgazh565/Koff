@@ -1,0 +1,22 @@
+.breadcrumbs {
+    padding-top: 20px;
+
+    @include md {
+        padding-top: 24px;
+    }
+
+    &__list {
+        display: flex;
+        gap: 6px;
+        color: $secondary-color;
+    }
+
+    &__item {
+        display: flex;
+        gap: 6px;
+    }
+
+    &__item:last-child &__separator {
+        display: none;
+    }
+}

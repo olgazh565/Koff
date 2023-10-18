@@ -1,0 +1,129 @@
+.card {
+    position: relative;
+    display: flex;   
+    flex-direction: column; 
+    height: 100%;
+
+    &__link {
+        &_img {
+            display: block;
+            margin-bottom: 12px;
+
+            @include lg {
+                margin-bottom: 16px;
+            }
+        }
+    }
+
+    &__img {
+        width: 100%;
+        aspect-ratio: 7/6;
+        object-fit: contain;
+        border-radius: 16px;
+
+        @include md {
+            aspect-ratio: 23/20;
+        }    
+        @include lg {
+            aspect-ratio: 151/125;
+        }    
+    }
+
+    &__info {
+        margin-bottom: 12px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include md {
+            margin-bottom: 20px;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 5px;
+        }
+        @include lg {
+            margin-bottom: 18px;
+        }
+    }
+
+    &__title {
+        font-size: 12px;
+        font-weight: 400;
+        margin-bottom: 4px;
+        
+        @include md {
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+    }
+
+    &__price {
+        font-size: 16px;
+
+        @include md {
+            font-size: 20px;
+            line-height: 1.15;
+        }
+    }
+
+    &__btn {
+        border-radius: 32px;
+        border: 1px solid $violett-color;
+        padding: 12px 24px;
+        color: $violett-color;
+        font-size: 12px;
+        font-weight: 400;
+        text-align: center;
+        width: 100%;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            background-color: #9200B7;
+            border-color: #9200B7;
+            color: $background-main;
+        }
+        &:focus-visible,
+        &:active {
+            border-color: #C0F;
+            background-color: transparent;
+        }
+
+        &_inactive {
+            opacity: 0.2;
+        }
+    }
+
+    &__favorite {
+        position: absolute;
+        color: $main-color;
+        top: 12px;
+        right: 12px;
+        outline: 0;
+        transition: color 0.2s ease-in-out;
+
+        svg {
+            transition: fill 0.2s ease-in-out;
+            fill: $background-main;
+        }
+
+        &:hover,
+        &:active,
+        &:focus-visible,
+        &_active {
+            color: $violett-color;
+
+            svg {
+                fill: $violett-color;
+            }
+        }
+
+        &:active {
+            color: #C0F;
+
+            svg {
+                fill: #C0F;
+            }
+        }
+    }
+}

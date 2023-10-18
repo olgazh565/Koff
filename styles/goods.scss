@@ -1,0 +1,46 @@
+.goods {
+    padding-top: 24px;
+    
+    @include md {
+        padding-top: 32px;
+    }
+    @include lg {
+        padding-top: 40px;
+    }
+
+    &__title {
+        font-size: 24px;
+        font-weight: 700;  
+        margin-bottom: 24px;
+
+        @include md {
+            font-size: 32px;
+        }
+        @include lg {
+            margin-bottom: 40px;  
+        }
+    }
+
+    &__list {
+        display: grid;
+        gap: 50px 8px;
+        grid-template-columns: repeat(auto-fit, 140px);
+        margin-bottom: 32px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @include md {
+            gap: 65px 10px;
+            grid-template-columns: repeat(auto-fit, 230px);
+            margin-bottom: 40px;
+        }
+        @include lg {
+            gap: 81px 16px;
+            grid-template-columns: repeat(auto-fit, 302px);
+        }
+    }
+}
+
+
