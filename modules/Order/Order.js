@@ -20,7 +20,7 @@ export class Order {
 	mount(parent, data) {
 		if (this.isMounted) return;
 
-		this.renderOrder(data);
+		this.orderWrapper = this.renderOrder(data);
 
 		parent.append(this.element);
 
@@ -28,6 +28,7 @@ export class Order {
 	}
 
 	unmount() {
+		this.orderWrapper.remove();
 		this.element.remove();
 		this.isMounted = false;
 	}
@@ -166,5 +167,6 @@ export class Order {
 		);
 
 		this.containerElement.append(orderWrapper);
+		return orderWrapper;
 	}
 }

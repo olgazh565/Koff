@@ -215,7 +215,7 @@ export class Cart {
           <input type="email" class="form-order__input" name="email" 
 						placeholder="E-mail" required>
           <input type="text" class="form-order__input" name="address" 
-						placeholder="Адрес доставки">
+						placeholder="Адрес доставки" disabled>
           <textarea class="form-order__textarea" name="comments" 
 						placeholder="Комментарий к заказу"></textarea>
       </fieldset>
@@ -252,7 +252,6 @@ export class Cart {
 			e.preventDefault();
 
 			const data = Object.fromEntries(new FormData(form));
-			console.log('data: ', data);
 			const {orderId} = await new ApiService().postOrder(data);
 			router.navigate(`/order/${orderId}`);
 		});
@@ -260,9 +259,8 @@ export class Cart {
 		form.addEventListener('change', (e) => {
 			if (e.target.closest('.radio__input_delivery')) {
 				form.address.disabled = false;
-			} else {
-				form.address.disabled = true;
-				form.address.value = '';
+				form.address.focus();
+				form.address.required = true;
 			}
 		});
 

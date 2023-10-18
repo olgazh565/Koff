@@ -22,7 +22,10 @@ const init = async () => {
 
 	if (!api.accessKey) await api.getAccessKey();
 
+	const {totalCount: basketCount} = await api.getCart();
+
 	new Header().mount();
+	new Header().changeCount(basketCount);
 	new Main().mount();
 	new Footer().mount();
 
@@ -212,6 +215,7 @@ const init = async () => {
 						const data = await api.getOrder(id);
 						console.log('data: ', data);
 						new Order().mount(new Main().element, data[0]);
+						new Header().changeCount(basketCount);
 					},
 					{
 						leave(done) {
@@ -242,10 +246,6 @@ const init = async () => {
 			});
 
 	router.resolve();
-
-	await api.getCart().then(data => {
-		new Header().changeCount(data.totalCount);
-	});
 };
 
 init();
