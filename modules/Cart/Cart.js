@@ -246,7 +246,7 @@ export class Cart {
               Доставка
           </label>
           <label class="form-order__label radio">
-              <input class="radio__input" type="radio" name="deliveryType" 
+              <input class="radio__input radio__input_pickup" type="radio" name="deliveryType" 
 								value="pickup" required>
               Самовывоз
           </label>
@@ -280,6 +280,10 @@ export class Cart {
 				form.address.disabled = false;
 				form.address.focus();
 				form.address.required = true;
+			} else if (e.target.closest('.radio__input_pickup')) {
+				form.address.disabled = true;
+				form.address.required = false;
+				form.address.value = '';
 			}
 		});
 
