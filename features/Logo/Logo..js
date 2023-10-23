@@ -1,4 +1,4 @@
-import logoImg from '/img/logo.svg';
+import logoImg from './img/logo.svg';
 
 export class Logo {
 	constructor(mainClassName) {
