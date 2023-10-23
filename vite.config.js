@@ -16,4 +16,7 @@ export default defineConfig({
 			plugins: [autoprefixer()],
 		},
 	},
+	build: {
+		sourcemap: 'inline',
+	},
 });

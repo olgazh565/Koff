@@ -133,7 +133,7 @@ const init = async () => {
 								.mount(
 										new Main().element,
 										products,
-										products.length ? `По запросу "${q}" найдено` :
+										products?.length ? `По запросу "${q}" найдено` :
 										`По запросу "${q}" ничего не найдено`,
 								);
 
@@ -196,7 +196,7 @@ const init = async () => {
 								.mount(
 										new Main().element,
 										cartItems,
-										cartItems.products.length ? 'Корзина' : 'Корзина пуста');
+										cartItems?.products.length ? 'Корзина' : 'Корзина пуста');
 					},
 					{
 						leave(done) {
