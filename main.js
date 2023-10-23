@@ -212,7 +212,6 @@ const init = async () => {
 			.on('/order/:id',
 					async ({data: {id}}) => {
 						const [order] = await api.getOrder(id);
-						console.log('order: ', order);
 						new Order().mount(new Main().element, order);
 
 						new Header().changeCount(basketCount);
