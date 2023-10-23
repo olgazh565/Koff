@@ -98,7 +98,7 @@ const init = async () => {
 								.mount(
 										new Main().element,
 										products,
-										products?.length ? 'Избранное' :
+										favorite?.length ? 'Избранное' :
 											'В избранном пока нет товаров',
 								);
 						pagination?.totalProducts > pagination?.limit ?
