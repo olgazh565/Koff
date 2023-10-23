@@ -214,7 +214,7 @@ const init = async () => {
 						const [order] = await api.getOrder(id);
 						new Order().mount(new Main().element, order);
 
-						new Header().changeCount(basketCount);
+						new Header().changeCount(0);
 					},
 					{
 						leave(done) {
