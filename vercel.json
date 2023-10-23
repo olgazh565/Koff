@@ -1,7 +1,7 @@
 {
   "routes": [
     { 
-      "src": "/(.*).(js|css)",
+      "src": "/(.*).(woff2|svg|js|css)",
       "dest": "/$1.$2"
     },
     { 
