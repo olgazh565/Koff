@@ -1,4 +1,4 @@
-import {Logo} from '../../features/Logo/Logo.';
+import {Logo} from '../../features/Logo/Logo';
 import {likeSvg} from '../../features/likeSvg/likeSvg';
 import {router} from '../../main';
 import {addContainer} from '../addContainer';

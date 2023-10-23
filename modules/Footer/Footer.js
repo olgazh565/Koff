@@ -1,4 +1,4 @@
-import {Logo} from '../../features/Logo/Logo.';
+import {Logo} from '../../features/Logo/Logo';
 import {addContainer} from '../addContainer';
 
 export class Footer {
