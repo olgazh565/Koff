@@ -15,7 +15,6 @@ export class Header {
 			this.containerElement = addContainer(this.element, 'header__container');
 			this.isMounted = false;
 		}
-
 		return Header.instance;
 	}
 

@@ -1,9 +1,9 @@
 import 'normalize.css';
 import './style.scss';
 import Navigo from 'navigo';
-import {Header} from './modules/header/Header';
-import {Main} from './modules/main/Main';
-import {Footer} from './modules/footer/Footer';
+import {Header} from './modules/Header/Header';
+import {Main} from './modules/Main/Main';
+import {Footer} from './modules/Footer/Footer';
 import {ProductList} from './modules/ProductList/ProductList';
 import {ApiService} from './services/ApiService';
 import {Catalog} from './modules/Catalog/Catalog';
@@ -211,8 +211,9 @@ const init = async () => {
 			)
 			.on('/order/:id',
 					async ({data: {id}}) => {
-						const data = await api.getOrder(id);
-						new Order().mount(new Main().element, data[0]);
+						const [order] = await api.getOrder(id);
+						console.log('order: ', order);
+						new Order().mount(new Main().element, order);
 
 						new Header().changeCount(basketCount);
 					},

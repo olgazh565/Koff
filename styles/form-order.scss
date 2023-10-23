@@ -59,6 +59,9 @@
         &:focus-visible {
             border: 1px solid #DFE3EB;
         }
+        &:disabled {
+            opacity: 0.5;
+        }
     }
 
     &__textarea {

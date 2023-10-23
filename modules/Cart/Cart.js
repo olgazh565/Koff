@@ -3,7 +3,7 @@ import {debounce} from '../../helpers';
 import {router} from '../../main';
 import {ApiService} from '../../services/ApiService';
 import {addContainer} from '../addContainer';
-import {Header} from '../header/Header';
+import {Header} from '../Header/Header';
 
 export class Cart {
 	static instance = null;
